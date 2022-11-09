@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "./Header";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
     height: ${(props) => props.height}px;
@@ -23,16 +24,19 @@ const Content = styled.div`
     border-radius: 50px;
 `;
 
-function Layout({ children }) {
+function Layout({ children, headerShown = true }) {
     const height = window.innerHeight;
     return (
         <Container height={height}>
             <Wrapper>
-                <Header />
+                {headerShown === true ? <Header /> : null}
                 <Content>{children}</Content>
             </Wrapper>
         </Container>
     );
 }
 
+Layout.propTypes = {
+    headerShown: PropTypes.bool,
+};
 export default Layout;

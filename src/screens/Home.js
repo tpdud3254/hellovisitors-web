@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../../styles/colors";
+import colors from "../styles/colors";
 
 const Container = styled.div`
     display: flex;
@@ -22,6 +22,7 @@ function Home() {
                 <div>고세영님 환영합니다</div>
                 <div>최근 방명록</div>
                 <div>최근 이웃 업데이트</div>
+                <div>내가 최근 방문한 이웃</div>
             </Wrapper>
             <Line></Line>
             <Wrapper>
