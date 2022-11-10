@@ -21,7 +21,7 @@ const Content = styled.div`
     background-color: ${(props) => props.theme.layoutColor};
     width: 80%;
     max-width: 1200px;
-    height: 600px;
+    min-height: 600px;
     border-radius: 50px;
 `;
 

@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Layout from "./components/Layout";
 import routes from "./routes";
-import Home from "./screens/Home";
+import Home from "./screens/Home/Home";
 import Login from "./screens/Login";
 import NotFound from "./screens/NotFound";
 import SignUp from "./screens/SignUp";
