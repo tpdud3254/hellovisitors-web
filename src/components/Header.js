@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import colors from "../styles/colors";
 import SearchInputBox from "./InputBox/SearchInput";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import routes from "../routes";
 
 const Container = styled.div`
     display: flex;
@@ -37,6 +41,11 @@ const Row = styled.div`
 `;
 
 function Header() {
+    const navigate = useNavigate();
+    const logOutUser = () => {
+        auth.signOut().then((result) => {});
+    };
+
     return (
         <Container>
             <Wrapper>
@@ -53,7 +62,7 @@ function Header() {
                     <Row>
                         <FontAwesomeIcon icon={faUser} />
                     </Row>
-                    <Row>logout</Row>
+                    <Row onClick={logOutUser}>logout</Row>
                 </Column>
             </Wrapper>
         </Container>

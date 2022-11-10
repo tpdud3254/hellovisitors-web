@@ -5,12 +5,13 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import PageTitle from "../components/PageTitie";
 import FormError from "../components/Message/FormError";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../routes";
 import AuthForm from "../components/Form/AuthForm";
 import AuthInput from "../components/InputBox/AuthInput";
 import SubmitButton from "../components/Button/SubmitButton";
 import HorizontalDivider from "../components/Divider/HorizontalDivider";
+import { auth } from "../firebase";
 
 const Wrapper = styled.div`
     form {
@@ -32,6 +33,8 @@ const BottomWrapper = styled.div`
 `;
 
 function Login() {
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(false);
     const {
         register,
@@ -48,28 +51,26 @@ function Login() {
 
             const { email, password } = getValues();
 
-            const auth = getAuth();
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
                 })
                 .catch((error) => {
-                    const errorMessage = error.message;
-                    if (
-                        errorMessage.match("email") ||
-                        errorMessage.match("user-not-found")
-                    ) {
-                        return setError("result", {
-                            message: "사용자를 찾을 수 없습니다.",
-                        });
-                    } else if (errorMessage.match("password")) {
-                        return setError("result", {
-                            message: "비밀번호가 맞지 않습니다.",
-                        });
+                    let message = "";
+                    if (error.code === "auth/invalid-email") {
+                        message = "맞지 않는 이메일 형식입니다.";
+                    } else if (error.code === "auth/user-disabled") {
+                        message = "사용자를 찾을 수 없습니다.";
+                    } else if (error.code === "auth/user-not-found") {
+                        message = "사용자를 찾을 수 없습니다.";
+                    } else if (error.code === "auth/wrong-password") {
+                        message = "비밀번호가 맞지 않습니다.";
+                    } else {
+                        message = error.message;
                     }
 
                     return setError("result", {
-                        message: errorMessage,
+                        message,
                     });
                 })
                 .finally(() => {
@@ -84,7 +85,7 @@ function Login() {
 
     return (
         <div>
-            <PageTitle title="login" />
+            <PageTitle title="Login" />
             <AuthForm title="LOG IN">
                 <Wrapper>
                     <form onSubmit={handleSubmit(onValid)}>
@@ -109,7 +110,7 @@ function Login() {
                         />
                         <SubmitButton
                             type="submit"
-                            value="Login"
+                            value={loading ? "Loading" : "Login"}
                             disabled={!formState.isValid || loading}
                         />
                     </form>

@@ -20,7 +20,8 @@ const Content = styled.div`
     align-items: center;
     background-color: ${(props) => props.theme.layoutColor};
     width: 80%;
-    height: 75%;
+    max-width: 1200px;
+    height: 600px;
     border-radius: 50px;
 `;
 

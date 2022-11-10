@@ -10,11 +10,27 @@ import NotFound from "./screens/NotFound";
 import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles/styles";
 import { darkTheme, lightTheme } from "./styles/theme";
+import { app, auth } from "./firebase";
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
-    const darkMode = false;
-    const isLoggedIn = false;
+    const [loading, setLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(auth.currentUser);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                setIsLoggedIn(true);
+            } else {
+                // User is signed out
+                setIsLoggedIn(false);
+            }
+            setLoading(false);
+        });
+    }, []);
 
+    const darkMode = false;
     return (
         <HelmetProvider>
             <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -24,7 +40,7 @@ function App() {
                         <Route
                             path={routes.home}
                             element={
-                                isLoggedIn ? (
+                                loading ? null : isLoggedIn ? (
                                     <Layout>
                                         <Home />
                                     </Layout>
