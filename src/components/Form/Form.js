@@ -9,7 +9,7 @@ const FormContainer = styled.div`
     justify-content: center;
 `;
 
-function AuthForm({ children, title }) {
+function Form({ children, title }) {
     return (
         <FormContainer>
             <Title title={title}></Title>
@@ -18,8 +18,8 @@ function AuthForm({ children, title }) {
     );
 }
 
-AuthForm.propTypes = {
+Form.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
-export default AuthForm;
+export default Form;

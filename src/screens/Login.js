@@ -7,7 +7,7 @@ import PageTitle from "../components/PageTitie";
 import FormError from "../components/Message/FormError";
 import { Link, useNavigate } from "react-router-dom";
 import routes from "../routes";
-import AuthForm from "../components/Form/AuthForm";
+import Form from "../components/Form/Form";
 import AuthInput from "../components/InputBox/AuthInput";
 import SubmitButton from "../components/Button/SubmitButton";
 import HorizontalDivider from "../components/Divider/HorizontalDivider";
@@ -86,7 +86,7 @@ function Login() {
     return (
         <div>
             <PageTitle title="Login" />
-            <AuthForm title="LOG IN">
+            <Form title="LOG IN">
                 <Wrapper>
                     <form onSubmit={handleSubmit(onValid)}>
                         <AuthInput
@@ -115,7 +115,7 @@ function Login() {
                         />
                     </form>
                 </Wrapper>
-            </AuthForm>
+            </Form>
             <HorizontalDivider thickness={2} color={"rgba(0,0,0,0.1)"} />
             <BottomWrapper>
                 <span>계정이 없으신가요?</span>

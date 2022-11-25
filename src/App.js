@@ -13,6 +13,8 @@ import { darkTheme, lightTheme } from "./styles/theme";
 import { app, auth } from "./firebase";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import CreateHouse from "./screens/CreateHouse";
+import House from "./screens/House";
 
 function App() {
     const [loading, setLoading] = useState(true);
@@ -56,6 +58,22 @@ function App() {
                             element={
                                 <Layout headerShown={false}>
                                     <SignUp />
+                                </Layout>
+                            }
+                        />
+                        <Route
+                            path={routes.createHouse}
+                            element={
+                                <Layout>
+                                    <CreateHouse />
+                                </Layout>
+                            }
+                        />
+                        <Route
+                            path={`${routes.house}/:houseId`}
+                            element={
+                                <Layout>
+                                    <House />
                                 </Layout>
                             }
                         />

@@ -3,7 +3,9 @@ import Header from "./Header";
 import PropTypes from "prop-types";
 
 const Container = styled.div`
-    height: ${(props) => props.height}px;
+    /* height: ${(props) => props.height}px; */
+    height: 100%;
+    padding-top: 50px;
 `;
 
 const Wrapper = styled.div`

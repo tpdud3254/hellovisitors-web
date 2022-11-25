@@ -16,6 +16,7 @@ const Container = styled.div`
     align-items: center;
     width: 70%;
     height: 50px;
+    max-width: 1100px;
 `;
 
 const Wrapper = styled.div`

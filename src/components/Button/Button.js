@@ -16,9 +16,9 @@ const SButton = styled.div`
     }
 `;
 
-function Button({ value, fontSize = 14 }) {
+function Button({ value, fontSize = 14, onClick }) {
     return (
-        <SButton fontSize={fontSize}>
+        <SButton fontSize={fontSize} onClick={onClick}>
             <span>{value}</span>
         </SButton>
     );
@@ -27,5 +27,6 @@ function Button({ value, fontSize = 14 }) {
 Button.propTypes = {
     value: PropTypes.string.isRequired,
     fontSize: PropTypes.number,
+    onClick: PropTypes.func.isRequired,
 };
 export default Button;
