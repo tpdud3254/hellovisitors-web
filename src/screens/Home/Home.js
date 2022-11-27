@@ -5,12 +5,14 @@ import styled from "styled-components";
 import Avatar from "../../components/Avatar/Avatar";
 import Button from "../../components/Button/Button";
 import SubmitButton from "../../components/Button/SubmitButton";
+import Calendar from "../../components/Calendar/Calendar";
 import VerticalDivider from "../../components/Divider/VerticalDivider";
 import PageTitle from "../../components/PageTitie";
 import { auth, db } from "../../firebase";
 import routes from "../../routes";
 import colors from "../../styles/colors";
 import Content from "./Content";
+
 const Container = styled.div`
     display: flex;
     width: 100%;
@@ -32,6 +34,7 @@ const Left = styled(Wrapper)`
 
 const Right = styled(Wrapper)`
     align-items: center;
+    padding: 0 30px;
 `;
 
 const TitleContainer = styled.div`
@@ -118,7 +121,7 @@ function Home() {
             <Right>
                 <div>
                     {houstId ? (
-                        "달력"
+                        <Calendar />
                     ) : (
                         <CreateHome>
                             <CreateHomeText>
